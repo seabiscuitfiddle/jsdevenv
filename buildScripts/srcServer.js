@@ -1,13 +1,13 @@
 // express is the basic web server
-var express = require('express');
+import express from 'express';
 // path is the current path of the executing file (?), might be path of the file we're in
-var path = require('path');
+import path from 'path';
 // opens up a TCP server at port (?)
-var open = require('open');
+import open from 'open';
 // port to open at
-var port = 3000;
+const port = 3000;
 // express start
-var app = express();
+const app = express();
 
 // app configuration for routing, basic /
 app.get('/', (req, res) => {
