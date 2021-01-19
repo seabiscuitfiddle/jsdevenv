@@ -4,10 +4,23 @@ import express from 'express';
 import path from 'path';
 // opens up a TCP server at port (?)
 import open from 'open';
+// brings in webpack support
+import webpack from 'webpack';
+// default export from the config file
+import config from '../webpack.config.dev';
+
 // port to open at
 const port = 3000;
 // express start
 const app = express();
+// configures the webpack compiler with the earlier config file
+const compiler = webpack(config);
+
+// Injects middleware into Express
+app.use(require('webpack-dev-middleware')(compiler, {
+  noInfo: true,
+  publicPath: config.output.publicPath,
+}));
 
 // app configuration for routing, basic /
 app.get('/', (req, res) => {
